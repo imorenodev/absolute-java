@@ -6,13 +6,26 @@ class DateThirdTry {
   private int year; // a four digit number
 
   public void writeOutput() {
-    System.out.println(month + " " +  day + ", " + year);
+    System.out.println(this.month + " " +  this.day + ", " + this.year);
   }
 
   public void setDate(int newMonth, int newDay, int newYear) {
-    month = monthString(newMonth);
-    day = newDay;
-    year = newYear;
+    this.month = monthString(newMonth);
+    this.day = newDay;
+    this.year = newYear;
+  }
+
+  public void advanceYear(int yearIncrease) {
+    this.year += yearIncrease;
+  }
+
+  public boolean isBetween(int lowYear, int highYear) {
+    return ((this.year > lowYear) && (this.year < highYear)); 
+  }
+
+  public double fractionDone(int targetDay) {
+    double dayDouble = this.day;
+    return dayDouble / targetDay;
   }
 
   public String monthString(int monthNumber) {
@@ -52,21 +65,21 @@ class DateThirdTry {
     Scanner keyboard = new Scanner(System.in);
     System.out.println("Enter month, day, and year.");
     System.out.println("Do not use a comma.");
-    month = keyboard.next();
-    day = keyboard.nextInt();
-    year = keyboard.nextInt();
+    this.month = keyboard.next();
+    this.day = keyboard.nextInt();
+    this.year = keyboard.nextInt();
   }
 
   public int getDay() {
-    return day;
+    return this.day;
   }
 
   public int getYear() {
-    return year;
+    return this.year;
   }
 
   public int getNextYear() {
-    return year + 1;
+    return this.year + 1;
   }
 
   public void happyGreeting() {
