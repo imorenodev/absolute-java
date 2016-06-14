@@ -12,7 +12,8 @@ public class DateFirstTryDemo {
     date2.month = "May";
     date2.day = 31;
     date2.year = 1988;
-    date2.writeOutput();
-
+    date2.yellIfNewYear();
+    date2.makeItNewYears();
+    date2.yellIfNewYear();
   }
 }
