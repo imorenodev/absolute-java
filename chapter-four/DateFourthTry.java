@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class DateThirdTry {
+public class DateFourthTry {
   private String month;
   private int day;
   private int year; // a four digit number
@@ -19,6 +19,21 @@ public class DateThirdTry {
     this.year += yearIncrease;
   }
 
+  public boolean equals(DateFourthTry otherDate) {
+    return ((this.month.equals(otherDate.month)) &&
+            (day == otherDate.day) && 
+            (year == otherDate.year));
+  }
+
+  public boolean precedes(DateFourthTry otherDate) {
+    return ((this.year < otherDate.year) || 
+            (this.year == otherDate.year &&
+             this.getMonth() < otherDate.getMonth()) ||
+            (this.year == otherDate.year && 
+             this.month.equals(otherDate.month) && 
+             this.day < otherDate.day));
+  }
+
   public boolean isBetween(int lowYear, int highYear) {
     return ((this.year > lowYear) && (this.year < highYear)); 
   }
@@ -26,6 +41,10 @@ public class DateThirdTry {
   public double fractionDone(int targetDay) {
     double dayDouble = this.day;
     return dayDouble / targetDay;
+  }
+  
+  public String toString() {
+    return (this.month + " " + this.day + ", " + this.year);
   }
 
   public String monthString(int monthNumber) {
