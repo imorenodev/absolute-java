@@ -71,10 +71,43 @@ public class DateFifthTry {
     this.year += yearIncrease;
   }
 
+  /**
+  Precondition: All arguments are positive integers
+  Postcondition: Returns true if date is within legal range
+  */
   private boolean dateOK(int monthInt, int dayInt, int yearInt) {
-    return ( (monthInt >= 1) && (monthInt <= 12) &&
-             (dayInt >= 1) && (dayInt <= 31) &&
-             (yearInt >= 1000) && (yearInt <= 9999) );
+    // check that date is within reasonable range 
+    if ( (monthInt >= 1) && (monthInt <= 12) &&
+         (dayInt >= 1) && (dayInt <= 31) && 
+         (yearInt >= 1000) && (yearInt <= 9999) ) {
+      // check for legal day if month is February
+      if (monthInt == 2) {
+        if (leapYear(yearInt)) {
+          return (dayInt <= 29);
+        } else {
+          return (dayInt <= 28);
+        }
+      }
+      // check for day <= 30 if month == Sept, April, June, Nov
+      if (monthInt == 9 || 
+          monthInt == 4 || 
+          monthInt == 6 || 
+          monthInt == 11) {
+        return (dayInt <= 30);
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private boolean leapYear(int year) {
+    if ( (year % 400 == 0) || 
+         ((year % 4 == 0) && (year % 100 != 0)) ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public boolean equals(DateFifthTry otherDate) {
