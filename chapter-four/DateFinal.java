@@ -148,7 +148,7 @@ public class DateFinal {
     }
   }
 
-  private boolean monthOK(String mont) {
+  private boolean monthOK(String month) {
     return ( month.equals("January") || month.equals("February") ||
              month.equals("March") || month.equals("April") ||
              month.equals("May") || month.equals("June") ||
