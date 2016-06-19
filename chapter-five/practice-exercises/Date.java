@@ -202,7 +202,8 @@ public class Date {
   public boolean equals(Date otherDate) {
     return ((this.month.equals(otherDate.month)) &&
             (this.day == otherDate.day) && 
-            (this.year == otherDate.year));
+            (this.year == otherDate.year) &&
+            (otherDate != null) );
   }
 
   public boolean precedes(Date otherDate) {
