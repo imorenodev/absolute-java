@@ -43,7 +43,19 @@ public class Person {
   }
 
   public void set(String newName, Date birthDate, Date deathDate) {
+    if (consistent(birthDate, deathDate)) {
+      name = newName;
+      born = new Date(birthDate);
 
+      if (deathDate == null) {
+        died = null;
+      } else {
+        died = new Date(deathDate);
+      }
+    } else {
+      System.out.println("Inconsistent dates.Aborting.");
+      System.exit(0);
+    }
   }
 
   public String toString() {
