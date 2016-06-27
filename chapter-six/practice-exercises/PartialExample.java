@@ -16,6 +16,31 @@ public class PartialExample {
 
     numberUsed = fillArray(score);
     showDifference(score, numberUsed);
+    differenceArray(score, numberUsed, 5);
+  }
+
+  /**
+    Precondition: numberUsed <= argumentArray.length
+                  the first numberUsed indexed variables of argumentArray have values.
+                  Returns an array of length numberUsed whose ith element is argumentArray[i] - adjustment.
+  */
+  public static double[] differenceArray(double[] argumentArray, int numberUsed, double adjustment) {
+    double[] tempArray = new double[numberUsed];
+
+    if (numberUsed <= argumentArray.length) {
+      for (int i = 0; i < numberUsed; i++) {
+        if (argumentArray[i] < 0) { 
+          System.out.println("Error: argumentArray[" + i + "] has no value");
+          System.exit(0);
+        }
+        tempArray[i] = (argumentArray[i] - adjustment);
+      }
+    } else {
+      System.out.println("Error: !numberUsed <= argumentArray.length");
+      System.exit(0);
+    }
+
+    return tempArray;
   }
 
   /**
