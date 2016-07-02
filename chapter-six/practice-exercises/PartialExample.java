@@ -2,41 +2,40 @@ import java.util.Scanner;
 
 public class PartialExample {
   public static final int MAX_NUMBER_SCORES = 10;
+  public static double[] scores = new double[MAX_NUMBER_SCORES];
+  public static int numberUsed = 0;
 
   /**
     Shows differences between each of a list of golf scores and their average.
   */
   public static void main(String[] args) {
-    double[] score = new double[MAX_NUMBER_SCORES];
-    int numberUsed = 0;
-
     System.out.println("This program reads golf scores and shows");
     System.out.println("how much each differs from the average.");
     System.out.println("Enter golf scores:");
 
-    numberUsed = fillArray(score);
-    showDifference(score, numberUsed);
-    differenceArray(score, numberUsed, 5);
+    numberUsed = fillArray();
+    showDifference();
+    differenceArray(5);
   }
 
   /**
-    Precondition: numberUsed <= argumentArray.length
-                  the first numberUsed indexed variables of argumentArray have values.
-                  Returns an array of length numberUsed whose ith element is argumentArray[i] - adjustment.
+    Precondition: numberUsed <= scores.length
+                  the first numberUsed indexed variables of scores have values.
+                  Returns an array of length numberUsed whose ith element is scores[i] - adjustment.
   */
-  public static double[] differenceArray(double[] argumentArray, int numberUsed, double adjustment) {
+  public static double[] differenceArray(double adjustment) {
     double[] tempArray = new double[numberUsed];
 
-    if (numberUsed <= argumentArray.length) {
+    if (numberUsed <= scores.length) {
       for (int i = 0; i < numberUsed; i++) {
-        if (argumentArray[i] < 0) { 
-          System.out.println("Error: argumentArray[" + i + "] has no value");
+        if (scores[i] < 0) { 
+          System.out.println("Error: scores[" + i + "] has no value");
           System.exit(0);
         }
-        tempArray[i] = (argumentArray[i] - adjustment);
+        tempArray[i] = (scores[i] - adjustment);
       }
     } else {
-      System.out.println("Error: !numberUsed <= argumentArray.length");
+      System.out.println("Error: !numberUsed <= scores.length");
       System.exit(0);
     }
 
@@ -44,10 +43,10 @@ public class PartialExample {
   }
 
   /**
-    Reads values into the array a. Returns the number of values placed in the array a.
+    Reads values into the array scores. Returns the number of values placed in the array scores.
   */
-  public static int fillArray(double[] a) {
-    System.out.println("Enter up to " + a.length + " nonnegative numbers.");
+  public static int fillArray() {
+    System.out.println("Enter up to " + scores.length + " nonnegative numbers.");
     System.out.println("Mark the end of the list with a negative number.");
 
     Scanner keyboard = new Scanner(System.in);
@@ -55,8 +54,8 @@ public class PartialExample {
     int index = 0;
     next = keyboard.nextDouble();
 
-    while ((next >= 0) && (index < a.length)) {
-      a[index] = next;
+    while ((next >= 0) && (index < scores.length)) {
+      scores[index] = next;
       index++;
       next = keyboard.nextDouble();
       // index is the number of array indexed variables used so far.
@@ -64,22 +63,22 @@ public class PartialExample {
 
     // index is the total number of array indexed variables used.
     if (next >= 0) {
-      System.out.println("Could only read in " + a.length + " input values.");
+      System.out.println("Could only read in " + scores.length + " input values.");
     }
     
     return index;
   }
 
   /**
-    Precondition: numberUsed <= a.length.
-                  a[0] through a[numberUsed-1] have values.
-    Returns the average of numbers a[0] through a[numberUsed-1].
+    Precondition: numberUsed <= scores.length.
+                  scores[0] through scores[numberUsed-1] have values.
+    Returns the average of numbers scores[0] through scores[numberUsed-1].
   */
-  public static double computeAverage(double[] a, int numberUsed) {
+  public static double computeAverage() {
     double total = 0;
     
     for (int index = 0; index < numberUsed; index++) {
-      total = total + a[index];
+      total = total + scores[index];
     }
 
     if (numberUsed > 0) {
@@ -92,19 +91,19 @@ public class PartialExample {
   }
 
   /**
-    Precondition: numberUsed <= a.length.
-                  The first numberUsed indexed variables of a have values.
+    Precondition: numberUsed <= scores.length.
+                  The first numberUsed indexed variables of scores have values.
     Postcondition: Gives screen output showing how much each of the first
-    numberUsed elements of the array a differ from their average.
+    numberUsed elements of the array scores differ from their average.
   */
-  public static void showDifference(double[] a, int numberUsed) {
-    double average = computeAverage(a, numberUsed);
+  public static void showDifference() {
+    double average = computeAverage();
     System.out.println("Average of the " + numberUsed + " scores = " + average);
 
     System.out.println("The scores are:");
 
     for (int index = 0; index < numberUsed; index++) {
-      System.out.println(a[index] + " differs from average by " + (a[index] - average));
+      System.out.println(scores[index] + " differs from average by " + (scores[index] - average));
     }
   }
 }
